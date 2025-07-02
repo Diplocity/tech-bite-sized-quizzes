@@ -2,8 +2,10 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { ArrowLeft } from "lucide-react";
 import TopicSelector from '@/components/TopicSelector';
 import QuizQuestion from '@/components/QuizQuestion';
+import Footer from '@/components/Footer';
 import { generateQuestions } from '@/services/questionGenerator';
 import type { Question, Topic, Difficulty } from '@/types/quiz';
 
@@ -73,17 +75,17 @@ const Index = () => {
     const percentage = Math.round((score / questions.length) * 100);
     
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-        <div className="max-w-4xl mx-auto">
-          <Card className="mb-8">
-            <CardHeader className="text-center">
-              <CardTitle className="text-3xl text-blue-900">Quiz Results</CardTitle>
-              <CardDescription className="text-lg">
+      <div className="min-h-screen bg-white">
+        <div className="max-w-4xl mx-auto p-6">
+          <Card className="mb-8 border-0 shadow-sm">
+            <CardHeader className="text-center pb-6">
+              <CardTitle className="text-3xl font-bold text-gray-900">Quiz Results</CardTitle>
+              <CardDescription className="text-lg text-gray-600">
                 {selectedTopic} - {selectedDifficulty} Level
               </CardDescription>
             </CardHeader>
             <CardContent className="text-center">
-              <div className="mb-6">
+              <div className="mb-8">
                 <div className="text-6xl font-bold text-blue-600 mb-2">
                   {percentage}%
                 </div>
@@ -117,20 +119,31 @@ const Index = () => {
                 ))}
               </div>
               
-              <Button onClick={resetQuiz} className="bg-blue-600 hover:bg-blue-700">
+              <Button onClick={resetQuiz} className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200">
                 Take Another Quiz
               </Button>
             </CardContent>
           </Card>
         </div>
+        <Footer />
       </div>
     );
   }
 
   if (questions.length > 0) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-        <div className="max-w-4xl mx-auto">
+      <div className="min-h-screen bg-white">
+        <div className="max-w-4xl mx-auto p-6">
+          <div className="mb-6">
+            <Button
+              onClick={resetQuiz}
+              variant="outline"
+              className="flex items-center gap-2 hover:bg-gray-50"
+            >
+              <ArrowLeft size={16} />
+              Back to Menu
+            </Button>
+          </div>
           <QuizQuestion
             question={questions[currentQuestionIndex]}
             questionNumber={currentQuestionIndex + 1}
@@ -144,27 +157,36 @@ const Index = () => {
             isLastQuestion={currentQuestionIndex === questions.length - 1}
           />
         </div>
+        <Footer />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-blue-900 mb-4">
-            IT Quiz Generator
+    <div className="min-h-screen bg-white">
+      <div className="max-w-5xl mx-auto p-6">
+        {/* Hero Section */}
+        <div className="text-center mb-16 py-12">
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            Sharpen Your Tech Skills with Smart AI Quizzes
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Test your knowledge with AI-generated multiple choice questions. 
-            Perfect for microlearning and interview preparation.
+          <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto mb-10 leading-relaxed">
+            Practice Git, Python, JavaScript, Linux, and more in fast, focused quizzes. 
+            Each session delivers real-world questions to help you prep for interviews or boost daily knowledge.
           </p>
+          <Button
+            onClick={() => document.getElementById('topic-selector')?.scrollIntoView({ behavior: 'smooth' })}
+            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
+          >
+            🔥 Try a Free Quiz
+          </Button>
         </div>
 
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle className="text-2xl text-center">Choose Your Challenge</CardTitle>
-            <CardDescription className="text-center">
+        {/* Topic Selector */}
+        <Card id="topic-selector" className="border-0 shadow-sm">
+          <CardHeader className="text-center pb-6">
+            <CardTitle className="text-3xl font-bold text-gray-900">Choose Your Challenge</CardTitle>
+            <CardDescription className="text-lg text-gray-600">
               Select a topic and difficulty level to generate personalized questions
             </CardDescription>
           </CardHeader>
@@ -180,7 +202,7 @@ const Index = () => {
               <Button
                 onClick={handleStartQuiz}
                 disabled={!selectedTopic || !selectedDifficulty || isLoading}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-gray-400 disabled:to-gray-400 text-white px-8 py-3 text-lg rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
               >
                 {isLoading ? 'Generating Questions...' : 'Start Quiz'}
               </Button>
@@ -188,10 +210,11 @@ const Index = () => {
           </CardContent>
         </Card>
 
-        <div className="text-center text-gray-500">
+        <div className="text-center text-gray-500 mt-8">
           <p>Questions are generated using AI to provide fresh content every time!</p>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

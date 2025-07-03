@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Brain, Check } from 'lucide-react';
+import { Infinity, Check } from 'lucide-react';
 
 interface LogoProps {
   size?: 'sm' | 'md' | 'lg';
@@ -24,8 +24,8 @@ const Logo: React.FC<LogoProps> = ({ size = 'md', showText = true }) => {
     <div className="flex items-center gap-3">
       {/* Logo Icon */}
       <div className={`${sizeClasses[size]} relative flex items-center justify-center bg-blue-600 rounded-lg shadow-md`}>
-        {/* Main brain icon */}
-        <Brain className="w-3/5 h-3/5 text-white" />
+        {/* Main infinity icon */}
+        <Infinity className="w-3/5 h-3/5 text-white" />
         
         {/* Check mark overlay */}
         <div className="absolute -bottom-1 -right-1 bg-white rounded-full p-1 shadow-sm">

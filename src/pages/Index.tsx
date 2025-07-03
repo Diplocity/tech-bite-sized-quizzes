@@ -186,7 +186,7 @@ const Index = () => {
             onClick={() => document.getElementById('topic-selector')?.scrollIntoView({ behavior: 'smooth' })}
             className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200"
           >
-            🔥 Try a Free Quiz
+            Try a Free Quiz
           </Button>
         </div>
 

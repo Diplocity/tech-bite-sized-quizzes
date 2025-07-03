@@ -12,22 +12,22 @@ interface TopicSelectorProps {
 }
 
 const topics: { name: Topic; icon: string; color: string }[] = [
-  { name: 'Python', icon: '🐍', color: 'bg-yellow-100 hover:bg-yellow-200 border-yellow-300' },
-  { name: 'JavaScript', icon: '🟨', color: 'bg-yellow-100 hover:bg-yellow-200 border-yellow-300' },
-  { name: 'Git', icon: '🔧', color: 'bg-orange-100 hover:bg-orange-200 border-orange-300' },
-  { name: 'Linux', icon: '🐧', color: 'bg-gray-100 hover:bg-gray-200 border-gray-300' },
-  { name: 'HTML/CSS', icon: '🎨', color: 'bg-pink-100 hover:bg-pink-200 border-pink-300' },
-  { name: 'React', icon: '⚛️', color: 'bg-blue-100 hover:bg-blue-200 border-blue-300' },
-  { name: 'Node.js', icon: '🟢', color: 'bg-green-100 hover:bg-green-200 border-green-300' },
-  { name: 'SQL', icon: '🗄️', color: 'bg-purple-100 hover:bg-purple-200 border-purple-300' },
-  { name: 'Docker', icon: '🐳', color: 'bg-blue-100 hover:bg-blue-200 border-blue-300' },
-  { name: 'AWS', icon: '☁️', color: 'bg-orange-100 hover:bg-orange-200 border-orange-300' },
+  { name: 'Python', icon: '🐍', color: 'bg-slate-100 hover:bg-slate-200 border-slate-300' },
+  { name: 'JavaScript', icon: '🟨', color: 'bg-amber-50 hover:bg-amber-100 border-amber-200' },
+  { name: 'Git', icon: '🔧', color: 'bg-orange-50 hover:bg-orange-100 border-orange-200' },
+  { name: 'Linux', icon: '🐧', color: 'bg-gray-50 hover:bg-gray-100 border-gray-200' },
+  { name: 'HTML/CSS', icon: '🎨', color: 'bg-rose-50 hover:bg-rose-100 border-rose-200' },
+  { name: 'React', icon: '⚛️', color: 'bg-sky-50 hover:bg-sky-100 border-sky-200' },
+  { name: 'Node.js', icon: '🟢', color: 'bg-emerald-50 hover:bg-emerald-100 border-emerald-200' },
+  { name: 'SQL', icon: '🗄️', color: 'bg-violet-50 hover:bg-violet-100 border-violet-200' },
+  { name: 'Docker', icon: '🐳', color: 'bg-cyan-50 hover:bg-cyan-100 border-cyan-200' },
+  { name: 'AWS', icon: '☁️', color: 'bg-orange-50 hover:bg-orange-100 border-orange-200' },
 ];
 
 const difficulties: { name: Difficulty; description: string; color: string }[] = [
-  { name: 'Beginner', description: 'Basic concepts and fundamentals', color: 'bg-green-500' },
-  { name: 'Intermediate', description: 'Practical applications and deeper understanding', color: 'bg-yellow-500' },
-  { name: 'Advanced', description: 'Complex scenarios and expert-level knowledge', color: 'bg-red-500' },
+  { name: 'Beginner', description: 'Basic concepts and fundamentals', color: 'bg-emerald-600' },
+  { name: 'Intermediate', description: 'Practical applications and deeper understanding', color: 'bg-amber-600' },
+  { name: 'Advanced', description: 'Complex scenarios and expert-level knowledge', color: 'bg-red-600' },
 ];
 
 const TopicSelector: React.FC<TopicSelectorProps> = ({

@@ -66,6 +66,56 @@ Simply open [Lovable](https://lovable.dev/projects/82ef7a9e-87a2-4788-81b6-001af
 
 ## Can I connect a custom domain to my Lovable project?
 
+# 🧠 Tech Bite-Sized Quizzes
+
+**Level Up Your IT Skills with AI-Powered Microlearning**
+
+Tech Bite-Sized Quizzes is a clean and modern quiz platform powered by AI. It's designed to help you master core IT topics like Python, JavaScript, Git, Linux, and more — all in 3-minute micro-sessions. Perfect for learners, job seekers, and anyone preparing for interviews.
+
+---
+
+## ✨ Features
+
+- 🎯 AI-generated quizzes tailored to popular tech topics
+- 📚 Choose from Python, Git, Linux, HTML, CSS, JavaScript, React, Databases
+- 🧩 Multiple difficulty levels: Beginner, Intermediate, Advanced
+- ✅ 3–5 multiple choice questions per quiz with answers & explanations
+- 🖼️ Clean, responsive UI with modern 3D touches
+- 📱 Mobile-friendly design
+- 🎓 Great for interview prep and daily learning
+
+---
+
+## 🚀 Try It Now
+
+👉 [Live Site (Lovable)](https://lovable.site/your-project-url)  
+🔁 [Support on Ko-fi](https://ko-fi.com/acewise)
+
+---
+
+## 💸 Support the Project
+
+If you find this helpful, consider supporting with a donation:  
+☕ [Buy me a coffee on Ko-fi](https://ko-fi.com/acewise)
+
+Or unlock unlimited quizzes with a future **Pro Version**.
+
+---
+
+## 🧩 Built With
+
+- HTML, CSS, JavaScript
+- Lovable.com (AI-powered web app builder)
+- GitHub for version control
+
+---
+
+## 📬 Contact
+
+Created by [@Diplocity](https://github.com/Diplocity)  
+🔗 Portfolio: https://zuhwebstudio.onrender.com/
+
+
 Yes, you can!
 
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.

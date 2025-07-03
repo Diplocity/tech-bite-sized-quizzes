@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import TopicSelector from '@/components/TopicSelector';
 import QuizQuestion from '@/components/QuizQuestion';
 import Footer from '@/components/Footer';
+import Logo from '@/components/Logo';
 import { generateQuestions } from '@/services/questionGenerator';
 import type { Question, Topic, Difficulty } from '@/types/quiz';
 
@@ -168,12 +168,17 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-white">
       <div className="max-w-5xl mx-auto p-6">
+        {/* Header with Logo */}
+        <div className="flex justify-center mb-8">
+          <Logo size="lg" />
+        </div>
+
         {/* Hero Section */}
-        <div className="text-center mb-16 py-12">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            Sharpen Your Tech Skills with Smart AI Quizzes
+        <div className="text-center mb-16 py-8">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+            Smart AI Quizzes for Tech Skills
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto mb-10 leading-relaxed">
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-10 leading-relaxed">
             Practice Git, Python, JavaScript, Linux, and more in fast, focused quizzes. 
             Each session delivers real-world questions to help you prep for interviews or boost daily knowledge.
           </p>

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { CircuitBoard, Lightbulb, Check } from 'lucide-react';
+import { Brain, Check } from 'lucide-react';
 
 interface LogoProps {
   size?: 'sm' | 'md' | 'lg';
@@ -23,16 +23,13 @@ const Logo: React.FC<LogoProps> = ({ size = 'md', showText = true }) => {
   return (
     <div className="flex items-center gap-3">
       {/* Logo Icon */}
-      <div className={`${sizeClasses[size]} relative flex items-center justify-center bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl shadow-lg`}>
-        {/* Circuit pattern background */}
-        <div className="absolute inset-0 opacity-20">
-          <CircuitBoard className="w-full h-full p-2 text-white" />
-        </div>
+      <div className={`${sizeClasses[size]} relative flex items-center justify-center bg-blue-600 rounded-lg shadow-md`}>
+        {/* Main brain icon */}
+        <Brain className="w-3/5 h-3/5 text-white" />
         
-        {/* Main icon */}
-        <div className="relative z-10 flex items-center justify-center">
-          <Lightbulb className="w-1/2 h-1/2 text-white fill-current" />
-          <Check className="w-1/4 h-1/4 text-yellow-300 absolute -bottom-1 -right-1 bg-white rounded-full p-0.5" />
+        {/* Check mark overlay */}
+        <div className="absolute -bottom-1 -right-1 bg-white rounded-full p-1 shadow-sm">
+          <Check className="w-3 h-3 text-blue-600" />
         </div>
       </div>
       
@@ -43,8 +40,8 @@ const Logo: React.FC<LogoProps> = ({ size = 'md', showText = true }) => {
             Ace<span className="text-blue-600">Wise</span>
           </span>
           {size === 'lg' && (
-            <span className="text-sm text-gray-500 font-medium tracking-wide">
-              Smart IT Quizzes
+            <span className="text-xs text-gray-500 font-medium tracking-wide">
+              Smart AI Quizzes for Tech Skills
             </span>
           )}
         </div>

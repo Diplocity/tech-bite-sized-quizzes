@@ -4,9 +4,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { trackEvent } from '@/utils/analytics';
 
 const EmailSignup: React.FC = () => {
-  const handleFormLoad = () => {
-    trackEvent('email_form_viewed');
+  const handleSectionView = () => {
+    trackEvent('email_section_viewed');
   };
+
+  React.useEffect(() => {
+    handleSectionView();
+  }, []);
 
   return (
     <Card className="border-0 shadow-xl bg-gradient-to-r from-blue-50 to-purple-50 backdrop-blur-sm">
@@ -20,18 +24,10 @@ const EmailSignup: React.FC = () => {
         </p>
       </CardHeader>
       <CardContent className="px-8 pb-8">
-        <div className="max-w-2xl mx-auto">
-          <iframe
-            src="https://tally.so/embed/meOZjo?transparentBackground=1"
-            width="100%"
-            height="300"
-            frameBorder="0"
-            marginHeight={0}
-            marginWidth={0}
-            title="Email Signup Form"
-            className="rounded-lg"
-            onLoad={handleFormLoad}
-          ></iframe>
+        <div className="max-w-2xl mx-auto text-center">
+          <p className="text-gray-500 text-sm">
+            Email collection form will be integrated here.
+          </p>
         </div>
       </CardContent>
     </Card>

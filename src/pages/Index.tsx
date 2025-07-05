@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft } from "lucide-react";
@@ -6,7 +6,9 @@ import TopicSelector from '@/components/TopicSelector';
 import QuizQuestion from '@/components/QuizQuestion';
 import Footer from '@/components/Footer';
 import Logo from '@/components/Logo';
+import EmailSignup from '@/components/EmailSignup';
 import { generateQuestions } from '@/services/questionGenerator';
+import { trackEvent, trackQuizStart, trackQuizComplete, trackTopicSelection, trackDifficultySelection } from '@/utils/analytics';
 import type { Question, Topic, Difficulty } from '@/types/quiz';
 
 const Index = () => {
@@ -18,9 +20,14 @@ const Index = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showResults, setShowResults] = useState(false);
 
+  useEffect(() => {
+    trackEvent('homepage_viewed');
+  }, []);
+
   const handleStartQuiz = async () => {
     if (!selectedTopic || !selectedDifficulty) return;
     
+    trackQuizStart(selectedTopic, selectedDifficulty);
     setIsLoading(true);
     try {
       const generatedQuestions = await generateQuestions(selectedTopic, selectedDifficulty);
@@ -46,6 +53,11 @@ const Index = () => {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
       setShowResults(true);
+      // Track quiz completion
+      const score = calculateScore();
+      if (selectedTopic) {
+        trackQuizComplete(selectedTopic, score, questions.length);
+      }
     }
   };
 
@@ -68,6 +80,16 @@ const Index = () => {
     return userAnswers.reduce((score, answer, index) => {
       return score + (answer === questions[index]?.correctAnswer ? 1 : 0);
     }, 0);
+  };
+
+  const handleTopicSelect = (topic: Topic) => {
+    setSelectedTopic(topic);
+    trackTopicSelection(topic);
+  };
+
+  const handleDifficultySelect = (difficulty: Difficulty) => {
+    setSelectedDifficulty(difficulty);
+    trackDifficultySelection(difficulty);
   };
 
   if (showResults) {
@@ -175,7 +197,7 @@ const Index = () => {
 
         {/* Hero Section */}
         <div className="text-center mb-16 py-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
             Smart AI Quizzes for Tech Skills
           </h1>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-10 leading-relaxed">
@@ -183,7 +205,10 @@ const Index = () => {
             Each session delivers real-world questions to help you prep for interviews or boost daily knowledge.
           </p>
           <Button
-            onClick={() => document.getElementById('topic-selector')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => {
+              trackEvent('cta_clicked', { button: 'try_free_quiz' });
+              document.getElementById('topic-selector')?.scrollIntoView({ behavior: 'smooth' });
+            }}
             className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200"
           >
             Try a Free Quiz
@@ -191,7 +216,7 @@ const Index = () => {
         </div>
 
         {/* Topic Selector */}
-        <Card id="topic-selector" className="border-0 shadow-xl bg-white/90 backdrop-blur-sm">
+        <Card id="topic-selector" className="border-0 shadow-xl bg-white/90 backdrop-blur-sm mb-16">
           <CardHeader className="text-center pb-6">
             <CardTitle className="text-3xl font-bold text-gray-900">Choose Your Challenge</CardTitle>
             <CardDescription className="text-lg text-gray-600">
@@ -202,8 +227,8 @@ const Index = () => {
             <TopicSelector
               selectedTopic={selectedTopic}
               selectedDifficulty={selectedDifficulty}
-              onTopicSelect={setSelectedTopic}
-              onDifficultySelect={setSelectedDifficulty}
+              onTopicSelect={handleTopicSelect}
+              onDifficultySelect={handleDifficultySelect}
             />
             
             <div className="text-center mt-8">
@@ -217,6 +242,11 @@ const Index = () => {
             </div>
           </CardContent>
         </Card>
+
+        {/* Email Signup Section */}
+        <div className="mb-16">
+          <EmailSignup />
+        </div>
 
         <div className="text-center text-gray-500 mt-8">
           <p>Questions are generated using AI to provide fresh content every time!</p>

@@ -20,8 +20,15 @@ const Logo: React.FC<LogoProps> = ({ size = 'md', showText = true }) => {
     lg: 'text-4xl'
   };
 
+  const handleClick = () => {
+    window.location.href = '/';
+  };
+
   return (
-    <div className="flex items-center gap-3">
+    <div 
+      className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity duration-200" 
+      onClick={handleClick}
+    >
       {/* Logo Icon */}
       <div className={`${sizeClasses[size]} relative flex items-center justify-center bg-blue-600 rounded-lg shadow-md`}>
         {/* Main infinity icon */}
